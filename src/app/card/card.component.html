@@ -1,0 +1,6 @@
+<p class="week-day">{{item.dt*1000 | date:"EEEE"}}</p>
+<p>{{item.dt*1000 | date:"dd LLL"}}</p>
+<div class="day-icon"><img src="http://openweathermap.org/img/wn/{{item.icon}}@2x.png"></div>
+<div class="day-temp">{{item.temp.day | number:'1.0-0'}}&deg; <small>C</small></div>
+<div class="day-evetemp">{{item.temp.night | number:'1.0-0'}}&deg; <small>C</small></div>
+<div class="day-description">{{item.description}}</div>

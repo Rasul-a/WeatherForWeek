@@ -1,0 +1,39 @@
+<div *ngIf=deniedLoc class="alert alert-warning" role="alert">
+  Не удалось определить местоположение, необходимо дать разрешение
+</div>
+<div *ngIf=cityNotFound class="alert alert-warning" role="alert">
+  Не удалось найти город
+</div>
+<div *ngIf=errorFound class="alert alert-warning" role="alert">
+  Ошибка. Попробуйте повторить позже
+</div>
+<div class="container">
+    <div class="current-wather">
+        <div class="input-group input-group-sm mb-3">
+            <input (keyup.enter)="getWeatherByCity()" [(ngModel)]="query" type="text" class="form-control" placeholder="город" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="getWeatherByCity()" class="btn btn-outline-secondary" type="button" id="button-addon2">Поиск</button>
+            </div>
+        </div>
+        <h2>{{city}}</h2>
+        <p class="current-date">{{date | date:'fullDate'}}</p>
+        <div class="weather-block">
+            <div class="icon"><img src="http://openweathermap.org/img/wn/{{response?.current.icon}}@2x.png">
+            </div>
+            <span class="temp">{{response?.current.temp | number:'1.0-0'}}&deg; <small>C</small></span>
+            <div class="description-block">
+                <span class="feels-like">Ощущается как {{response?.current.feels_like | number:'1.0-0'}}&deg; <small>C</small></span>
+                <p>{{response?.current.description}}</p>
+            </div>
+        </div>
+        <div class="other">
+            <div class="wind">Ветер {{response?.current.wind_speed}} м/с</div>
+            <div class="humidity">Влажность {{response?.current.humidity}} %</div>
+            <div class="grnd">Давление {{response?.current.pressure}} гПа</div>
+        </div>
+    </div>
+
+    <div class="weather-days">
+        <app-card class="weather-day" *ngFor="let item of response?.daily"  [item]=item></app-card>
+    </div>
+</div>
